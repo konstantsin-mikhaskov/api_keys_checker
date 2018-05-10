@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  access_key_id: MyString
+  secret_access_key: MyString
+  expired_at: 2018-05-10 14:27:03
+  last_check_at: 2018-05-10 14:27:03
+
+two:
+  access_key_id: MyString
+  secret_access_key: MyString
+  expired_at: 2018-05-10 14:27:03
+  last_check_at: 2018-05-10 14:27:03
