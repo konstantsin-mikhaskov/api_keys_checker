@@ -1,0 +1,12 @@
+table.table.table-hover
+  caption
+    = t :Key
+  thead
+    tr
+      th #
+      th Key_part_1
+      th Key_part_2
+    tbody
+      = render partial: 'key', collection: @keys.order('id ASC')
+br
+  = will_paginate @keys, :renderer => BootstrapPagination::Rails
