@@ -8,4 +8,4 @@ tr class=("#{key.id}_key")
   td
     = link_to 'Edit', rails_admin.show_path(model_name: 'key', id: key.id)
   td
-    = link_to 'Check for availability'#, admin_keys_url(bank_id: bank.id)
+    = link_to 'Check for availability', check_availability_key_path(id: key.id)

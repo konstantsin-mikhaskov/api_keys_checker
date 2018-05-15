@@ -3,7 +3,7 @@ class EmailService < ApplicationRecord
 
   has_one :account
 
-  validates :login, presence: true
+  validates :name, presence: true
   validates :password, presence: true
 
   after_save :update_domain
@@ -11,7 +11,7 @@ class EmailService < ApplicationRecord
   private
 
   def update_domain
-    update_column(:domain, self.login[/@(.*)/,1])
+    update_column(:domain, self.name[/@(.*)/,1])
   end
 
 end

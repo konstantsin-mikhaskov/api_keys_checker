@@ -10,7 +10,6 @@ module AccountAdmin
       end
       list do
         field :shop
-        field :name
         field :email
         field :password
       end

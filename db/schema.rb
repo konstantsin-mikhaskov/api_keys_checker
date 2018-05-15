@@ -15,10 +15,8 @@ ActiveRecord::Schema.define(version: 20180510112931) do
   create_table "accounts", force: :cascade do |t|
     t.integer  "email_service_id"
     t.integer  "shop_id"
-    t.string   "name"
     t.string   "password"
     t.string   "email"
-    t.string   "address"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["email_service_id"], name: "index_accounts_on_email_service_id"
@@ -26,7 +24,7 @@ ActiveRecord::Schema.define(version: 20180510112931) do
   end
 
   create_table "email_services", force: :cascade do |t|
-    t.string   "login"
+    t.string   "name"
     t.string   "password"
     t.string   "domain"
     t.datetime "created_at", null: false

@@ -5,7 +5,6 @@ class Account < ApplicationRecord
   belongs_to :shop
   has_many :keys
 
-  validates :name, presence: true
   validates :password, presence: true
 
   after_save :update_email
@@ -13,7 +12,7 @@ class Account < ApplicationRecord
   private
 
   def update_email
-    update_column(:email, self.email_service.email)
+    update_column(:email, self.email_service.name)
   end
 
 end
