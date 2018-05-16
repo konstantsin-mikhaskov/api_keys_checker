@@ -2,8 +2,11 @@ table.table.table-hover
   thead
     tr
       th #
-      th Key_part_1
-      th Key_part_2
+      th shop
+      th access_key_id
+      th secret_access_key
+      th expired_at
+      th last_check_at
     tbody
       = render partial: 'key', collection: @keys.order('id ASC')
 br

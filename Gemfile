@@ -39,6 +39,7 @@ gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 gem 'will_paginate-bootstrap'
 gem 'bootstrap'
 gem 'rails-ujs'
+gem 'curb'
 
 
 # Use Capistrano for deployment

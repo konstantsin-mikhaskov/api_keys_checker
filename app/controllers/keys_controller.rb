@@ -6,10 +6,9 @@ class KeysController < ApplicationController
   end
 
   def check_availability
-    binding.pry
     @key = Key.find params[:id]
-    helpers.amazon_ckeck_query(@key)
-    redirect_to root_path
+    request_url = helpers.form_check_query(@key)
+    helpers.execute_check_query(request_url)
   end
 
   def key_params

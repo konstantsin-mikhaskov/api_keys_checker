@@ -2,10 +2,16 @@ tr class=("#{key.id}_key")
   td
     = label_tag "#{key_counter + @per_page.to_i * (@page.to_i-1) + 1}"
   td
+    = label_tag "#{key.account.shop.name}"
+  td
     = label_tag "#{key.access_key_id}"
   td
     = label_tag "#{key.secret_access_key}"
   td
+    = label_tag "#{key.expired_at}"
+  td
+    = label_tag "#{key.expired_at}"
+  td
     = link_to 'Edit', rails_admin.show_path(model_name: 'key', id: key.id)
   td
-    = link_to 'Check for availability', check_availability_key_path(id: key.id)
+    = link_to 'Check', check_availability_key_path(id: key.id)

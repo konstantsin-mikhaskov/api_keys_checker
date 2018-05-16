@@ -58,6 +58,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    curb (0.9.3)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.23)
@@ -221,6 +222,7 @@ DEPENDENCIES
   bootstrap
   byebug
   coffee-rails (~> 4.2)
+  curb
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
