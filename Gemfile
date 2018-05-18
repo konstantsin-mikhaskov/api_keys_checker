@@ -40,6 +40,7 @@ gem 'will_paginate-bootstrap'
 gem 'bootstrap'
 gem 'rails-ujs'
 gem 'curb'
+gem 'rename'
 
 
 # Use Capistrano for deployment
