@@ -1,8 +1,15 @@
 class KeysController < ApplicationController
+  respond_to :html, :json
+
   def index
     @per_page = 25
     params[:page] ? @page = params[:page] : @page = 1
     @keys = Key.paginate(page: @page, per_page: @per_page)
+  end
+
+  def show
+    @key = Key.find params[:id]
+    respond_modal_with @key
   end
 
   def check_availability

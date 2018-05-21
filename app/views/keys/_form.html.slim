@@ -1,0 +1,4 @@
+.modal-body
+  = select_tag "asin", options_for_select(@key.account.shop.products.collect{ |k| [k.asin, k.id] }, remote: request.xhr?, html: { data: { modal: true } })
+.modal-footer
+
