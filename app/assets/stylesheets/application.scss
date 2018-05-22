@@ -1,1 +1,8 @@
 @import 'bootstrap';
+
+#male, #female {
+  display:none
+}
+#male.selected, #female.selected {
+  display:block
+}
