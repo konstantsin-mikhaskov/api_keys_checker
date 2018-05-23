@@ -17,9 +17,3 @@
 //= require bootstrap
 //= require modals
 //= require_tree .
-
-$("input[type=radio]").change(function (e) {
-    debugger;
-    $("#male, #female").removeClass("selected");
-    $("#" + $(e.currentTarget).val()).addClass("selected");
-});

@@ -1,8 +1,8 @@
 @import 'bootstrap';
 
-#male, #female {
+#user_asin, #list_asin {
   display:none
 }
-#male.selected, #female.selected {
+#user_asin.selected, #list_asin.selected {
   display:block
 }

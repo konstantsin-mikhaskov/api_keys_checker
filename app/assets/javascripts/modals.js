@@ -11,6 +11,12 @@
             });
             return false;
         });
+        $(document).on('click', '#mainModal', function() {
+            $("input[type=radio]").change(function (e) {
+                $("#user_asin, #list_asin").removeClass("selected");
+                $("#" + $(e.currentTarget).val()).addClass("selected");
+            });
+        });
         return $(document).on('ajax:success', 'form[data-modal]', function(event, data, status, xhr) {
             var url;
             url = xhr.getResponseHeader('Location');
@@ -23,5 +29,6 @@
             return false;
         });
     });
+
 
 }).call(this);

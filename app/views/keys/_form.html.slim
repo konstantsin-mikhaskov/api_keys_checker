@@ -1,16 +1,15 @@
 .modal-body
-  form action=""
-    input name="sex" type="radio" value="male"
-    | Male
+  form#choice action=""
+    input name="asin" type="radio" value="user_asin"
+    | Enter your product asin
     br
-    #male male text
+    #user_asin
+      = text_field(:post, :title, size: 20)
     br
-    input name="sex" type="radio" value="female"
-    | Female
+    input name="asin" type="radio" value="list_asin"
+    | Choose asin from list
     br
-    #female female text
+    #list_asin
+      = select_tag "asin", options_for_select(@key.account.shop.products.collect {|k| [k.asin, k.id]}, remote: request.xhr?, html: {data: {modal: true}})
     br
 .modal-footer
-  = select_tag "asin", options_for_select(@key.account.shop.products.collect{ |k| [k.asin, k.id] }, remote: request.xhr?, html: { data: { modal: true } })
-
-
