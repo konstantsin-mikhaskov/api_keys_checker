@@ -4,17 +4,17 @@ require 'openssl'
 require 'base64'
 
 module KeysHelper
-  def form_check_query(key)
+  def form_check_query(key,asin)
     account = Account.find(key.account_id)
     shop = Shop.find(account.shop_id)
-    endpoint = "webservices.amazon.com"
+    endpoint = "webservices.amazon.#{shop.domain}"
     request_uri = "/onca/xml"
     params = {
         "Service" => "AWSECommerceService",
         "Operation" => "ItemLookup",
         "AWSAccessKeyId" => key.access_key_id,
         "AssociateTag" => "none",
-        "ItemId" => shop.products.first.asin,
+        "ItemId" => asin,
         "IdType" => "ASIN",
         "ResponseGroup" => "Images,ItemAttributes,Offers"
     }
@@ -33,8 +33,9 @@ module KeysHelper
   def execute_check_query(url)
     c = Curl::Easy.new(url) do|curl|
       curl.on_success {|easy| puts "success, add more easy handles" }
-      curl.on_missing { |easy| return 'fail' }
+      curl.on_missing { |easy| puts "fail" }
     end
     c.perform
+    c.body_str
   end
 end

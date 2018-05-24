@@ -1,15 +1,16 @@
-.modal-body
-  form#choice action=""
+= form_tag(check_availability_key_path, remote: true) do
+  .modal-body
     input name="asin" type="radio" value="user_asin"
     | Enter your product asin
     br
     #user_asin
-      = text_field(:post, :title, size: 20)
+      = text_field_tag 'key[asin]', 'Enter your asin here'
     br
     input name="asin" type="radio" value="list_asin"
     | Choose asin from list
     br
     #list_asin
-      = select_tag "asin", options_for_select(@key.account.shop.products.collect {|k| [k.asin, k.id]}, remote: request.xhr?, html: {data: {modal: true}})
+      = select_tag 'key[asin]', options_for_select(@key.account.shop.products.collect {|k| [k.asin, k.asin]}, remote: request.xhr?, html: {data: {modal: true}})
     br
-.modal-footer
+  .modal-footer
+    = submit_tag 'Send', remote:true

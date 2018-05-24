@@ -14,11 +14,15 @@ class KeysController < ApplicationController
 
   def check_availability
     @key = Key.find params[:id]
-    request_url = helpers.form_check_query(@key)
-    helpers.execute_check_query(request_url)
+    asin = params[:key][:asin]
+    request_url = helpers.form_check_query(@key,asin)
+    @response_xml = helpers.execute_check_query(request_url)
+    respond_to do |format|
+      format.js {}
+    end
   end
 
   def key_params
-    params.require(:key)#.permit(:, :address)
+    params.require(:key).permit(:id, :asin)
   end
 end
