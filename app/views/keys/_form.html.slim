@@ -1,16 +1,16 @@
-= form_tag(check_availability_key_path, remote: true) do
+= form_tag({}, {id: "#{@key.id}"}) do
   .modal-body
-    input name="asin" type="radio" value="user_asin"
+    input id="own_asin" name="asin1" type="radio" value="user_asin"
     | Enter your product asin
     br
     #user_asin
       = text_field_tag 'key[asin]', 'Enter your asin here'
     br
-    input name="asin" type="radio" value="list_asin"
+    input id="chosen_asin" name="asin2" type="radio" value="list_asin"
     | Choose asin from list
     br
     #list_asin
       = select_tag 'key[asin]', options_for_select(@key.account.shop.products.collect {|k| [k.asin, k.asin]}, remote: request.xhr?, html: {data: {modal: true}})
     br
   .modal-footer
-    = submit_tag 'Send', remote:true
+    = submit_tag 'Send'

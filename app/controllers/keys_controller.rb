@@ -15,6 +15,7 @@ class KeysController < ApplicationController
   def check_availability
     @key = Key.find params[:id]
     asin = params[:key][:asin]
+    binding.pry
     request_url = helpers.form_check_query(@key,asin)
     @response_xml = helpers.execute_check_query(request_url)
     respond_to do |format|

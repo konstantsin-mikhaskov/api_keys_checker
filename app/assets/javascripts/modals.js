@@ -13,9 +13,19 @@
         });
         $(document).on('click', '#mainModal', function() {
             $("input[type=radio]").change(function (e) {
-                $("#user_asin, #list_asin").removeClass("selected");
-                $("#" + $(e.currentTarget).val()).addClass("selected");
+                $("#user_asin, #list_asin").removeClass("selected")
+                $("#" + $(e.currentTarget).val()).addClass("selected")
             });
+        });
+        $(document).on("submit", "form", function() {
+            debugger;
+            var keyId = $(this).attr('id');
+            var inputVal = $(this).find("input:checked").nextAll('div').first().children('input').val();
+            $.ajax({
+                type: "POST",
+                url: "/keys/#{keyId}/check_availability",
+                data: { asin: inputVal }
+            })
         });
         return $(document).on('ajax:success', 'form[data-modal]', function(event, data, status, xhr) {
             var url;
