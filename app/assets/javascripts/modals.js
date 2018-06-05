@@ -17,15 +17,22 @@
                 $("#" + $(e.currentTarget).val()).addClass("selected")
             });
         });
-        $(document).on("submit", "form", function() {
-            debugger;
-            var keyId = $(this).attr('id');
-            var inputVal = $(this).find("input:checked").nextAll('div').first().children('input').val();
+        $(document).on("submit", "form", function(event) {
+            event.preventDefault();
+            var keyId = parseInt($(this).attr('id'));
+            var inputVal = $(this).find("input:checked").nextAll('div').first().children('[name=key-asin]').val();
             $.ajax({
                 type: "POST",
-                url: "/keys/#{keyId}/check_availability",
-                data: { asin: inputVal }
-            })
+                url: "/keys/" + keyId  +"/check_availability",
+                data: {"key": {"asin": inputVal}},
+                success: function(response) {
+                    alert response
+                    return false
+                },
+                error: function(xhr) {
+                    return false
+                }
+            });
         });
         return $(document).on('ajax:success', 'form[data-modal]', function(event, data, status, xhr) {
             var url;
