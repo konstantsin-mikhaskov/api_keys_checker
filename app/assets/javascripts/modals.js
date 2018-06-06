@@ -13,7 +13,7 @@
         });
         $(document).on('click', '#mainModal', function() {
             $("input[type=radio]").change(function (e) {
-                $("#user_asin, #list_asin").removeClass("selected")
+                $("#user_asin, #list_asin").removeClass("selected");
                 $("#" + $(e.currentTarget).val()).addClass("selected")
             });
         });
@@ -24,14 +24,16 @@
             $.ajax({
                 type: "POST",
                 url: "/keys/" + keyId  +"/check_availability",
+                dataType: "xml",
                 data: {"key": {"asin": inputVal}},
-                success: function(response) {
-                    alert response
-                    return false
+                success: function(xml) {
+                    $(xml).find('Item').children('asin').appendTo(".modal-footer");
+                    return true
                 },
-                error: function(xhr) {
-                    return false
+                error: function() {
+                    alert("An error occurred while processing XML file.");
                 }
+
             });
         });
         return $(document).on('ajax:success', 'form[data-modal]', function(event, data, status, xhr) {

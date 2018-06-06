@@ -36,7 +36,6 @@ module KeysHelper
       curl.on_missing { |easy| puts "fail" }
     end
     c.perform
-    binding.pry
     c.body_str
   end
 end
