@@ -12,5 +12,6 @@
     #list_asin
       = select_tag 'key-asin', options_for_select(@key.account.shop.products.collect {|k| [k.asin, k.asin]}, remote: request.xhr?, html: {data: {modal: true}})
     br
-  .modal-footer
     = submit_tag 'Send'
+  .modal-footer
+    

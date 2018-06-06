@@ -19,6 +19,7 @@
         });
         $(document).on("submit", "form", function(event) {
             event.preventDefault();
+            var form = $(this)
             var keyId = parseInt($(this).attr('id'));
             var inputVal = $(this).find("input:checked").nextAll('div').first().children('[name=key-asin]').val();
             $.ajax({
@@ -27,7 +28,7 @@
                 dataType: "xml",
                 data: {"key": {"asin": inputVal}},
                 success: function(xml) {
-                    $(xml).find('Item').children('asin').appendTo(".modal-footer");
+                    form.replaceWith($(xml).find('Item'));
                     return true
                 },
                 error: function() {
