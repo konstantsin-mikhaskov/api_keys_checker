@@ -19,7 +19,8 @@
         });
         $(document).on("submit", "form", function(event) {
             event.preventDefault();
-            var form = $(this)
+            var list = $('div');
+            var form = $(this);
             var keyId = parseInt($(this).attr('id'));
             var inputVal = $(this).find("input:checked").nextAll('div').first().children('[name=key-asin]').val();
             $.ajax({
@@ -28,7 +29,12 @@
                 dataType: "xml",
                 data: {"key": {"asin": inputVal}},
                 success: function(xml) {
-                    form.replaceWith($(xml).find('Item'));
+                    var asin = $(xml).find('Item').children('asin').text();
+                    var image = $(xml).find('Item').children('imagesets').children('imageset').children('mediumimage')[0].outerHTML;
+                    var list = $("<div></div>")
+                      .append('<div>'+asin+'</div>')
+                      .append('<img src="'+ image.match(/<URL>(.+)<\/URL>/)[1] +'" />');
+                    form.replaceWith(list);
                     return true
                 },
                 error: function() {
