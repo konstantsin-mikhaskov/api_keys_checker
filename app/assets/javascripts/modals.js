@@ -19,7 +19,6 @@
         });
         $(document).on("submit", "form", function(event) {
             event.preventDefault();
-            var list = $('div');
             var form = $(this);
             var keyId = parseInt($(this).attr('id'));
             var inputVal = $(this).find("input:checked").nextAll('div').first().children('[name=key-asin]').val();
@@ -29,18 +28,32 @@
                 dataType: "xml",
                 data: {"key": {"asin": inputVal}},
                 success: function(xml) {
-                    var asin = $(xml).find('Item').children('asin').text();
-                    var image = $(xml).find('Item').children('imagesets').children('imageset').children('mediumimage')[0].outerHTML;
-                    var list = $("<div></div>")
-                      .append('<div>'+asin+'</div>')
-                      .append('<img src="'+ image.match(/<URL>(.+)<\/URL>/)[1] +'" />');
-                    form.replaceWith(list);
-                    return true
+                    debugger;
+                    if ($(xml).children('itemlookuperrorresponse') != '') {
+                        var responseError = $(xml).children('itemlookuperrorresponse').children('error').text();
+                        var product = $("<div id='containerDiv'></div>")
+                            .append('<div>' + responseError + '</div>');
+                        form.replaceWith(product);
+                    }
+                    else {
+                        var title = $(xml).find('Item').children('itemattributes').children('title').text();
+                        var asin = $(xml).find('Item').children('asin').text();
+                        var image = $(xml).find('Item').children('largeimage')[0].outerHTML;
+                        var detailUrl = $(xml).find('Item').children('detailpageurl').text();
+                        var product = $("<div id='containerDiv'></div>")
+                            .append('<div>' + title + '</div>')
+                            .append('<div>' + asin + '</div>')
+                            .append('<img src="' + image.match(/<URL>(.+)<\/URL>/)[1] + '"/>');
+                        form.replaceWith(product);
+                        $('img').each(function () {
+                            $(this).wrap('<li><a href="' + detailUrl + '"></a></li>');
+                        });
+                        return true
+                    }
                 },
                 error: function() {
                     alert("An error occurred while processing XML file.");
                 }
-
             });
         });
         return $(document).on('ajax:success', 'form[data-modal]', function(event, data, status, xhr) {

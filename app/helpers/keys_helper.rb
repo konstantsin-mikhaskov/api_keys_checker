@@ -12,7 +12,7 @@ module KeysHelper
     params = {
         "Service" => "AWSECommerceService",
         "Operation" => "ItemLookup",
-        "AWSAccessKeyId" => key.access_key_id,
+        "AWSAccessKeyId" => "1",
         "AssociateTag" => "none",
         "ItemId" => asin,
         "IdType" => "ASIN",
