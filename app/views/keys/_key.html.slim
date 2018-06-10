@@ -10,7 +10,7 @@ tr class=("#{key.id}_key")
   td
     = label_tag "#{key.expired_at}"
   td
-    = label_tag "#{key.expired_at}"
+    = label_tag "#{key.last_check_at}"
   td
     = link_to 'Edit', rails_admin.show_path(model_name: 'key', id: key.id)
   td
