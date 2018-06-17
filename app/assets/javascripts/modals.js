@@ -13,7 +13,6 @@
         });
         $(document).on('click', '#mainModal', function() {
             $("input[type=radio]").change(function (e) {
-                debugger;
                 $("#user_asin, #list_asin").removeClass("selected").prevAll('input').prop("checked", false );
                 $("#" + $(e.currentTarget).val()).addClass("selected").prevAll('input').first().prop( "checked", true );
             });
